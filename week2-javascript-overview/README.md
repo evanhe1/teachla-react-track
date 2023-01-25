@@ -1,5 +1,20 @@
 # Week 2: JavaScript Overview
 
+- [Week 2: JavaScript Overview](#week-2-javascript-overview)
+  - [Introduction](#introduction)
+  - [ES6](#es6)
+    - [let and const](#let-and-const)
+    - [Arrow Functions](#arrow-functions)
+    - [Array Methods](#array-methods)
+    - [Destructuring](#destructuring)
+    - [Spread Operator](#spread-operator)
+    - [Modules](#modules)
+      - [Export](#export)
+      - [Import](#import)
+  - [Additional Resources](#additional-resources)
+
+Welceome! Today we will learn about JavaScript!
+
 ## Introduction
 JavaScript is a programming language that serves as one of the key technologies behind the web, along with HTML and CSS. 
 
