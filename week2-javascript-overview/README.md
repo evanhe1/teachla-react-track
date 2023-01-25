@@ -1,7 +1,7 @@
 # Week 2: JavaScript Overview
 
 ## Introduction
-JavaScript is a programming language that serves as one of the key technologies behind the web, along with HTML as CSS. 
+JavaScript is a programming language that serves as one of the key technologies behind the web, along with HTML and CSS. 
 
 The three technologies synergize similarly to nouns, adjectives, and verbs in speech. HTML is analogous to a noun (outlining what will appear on the page) and CSS is analogous to an adjective (describing the styling of the page), JavaScript is analogous to a verb, allowing a page to dynamically respond to a user's actions.
 
@@ -75,7 +75,7 @@ const student1 = {
 const student2 = {
     gpa: 3.1,
     get_gpa: () => {
-        console.log(this)
+        console.log(this.gpa)
     }
 }
 
@@ -134,15 +134,15 @@ From the two examples above, here is general advice about when to use arrow func
 ```JavaScript
 const nums = [1,2,3]
 
-const numsSqaured = map(num => num ** 2) // returns [1,4,9]
+const numsSqaured = nums.map(num => num ** 2) // returns [1,4,9]
 ```
 
-`filter` allows you to select elements from an array that return `true` to a boolean filter function. Here is an exampple of only filtering the even numbers of an array:
+`filter` allows you to select elements from an array that return `true` to a boolean filter function. Here is an example of only filtering the even numbers of an array:
 
 ```JavaScript
 const nums = [1,2,3,4,5]
 
-const numsEven = filter(num => num % 2 === 0) // returns [2,4]
+const numsEven = nums.filter(num => num % 2 === 0) // returns [2,4]
 ```
 
 `reduce` runs a reducer function on each element of the array in order, passing the current result at each step to the next element. The user can pass in a initial value for the result before the first element is processed, without the value at index 0 will be used as the initial value. The most intuitive use case for this function is for summing all the elements of an array:
@@ -157,7 +157,7 @@ const numsSum = nums.reduce(
 ```
 
 ### Destructuring
-Destructuring can be used to quickly initialize several variables after an array or object.
+Destructuring can be used to quickly initialize several variables based on an array or object.
 
 Let's consider array destructuring first:
 
