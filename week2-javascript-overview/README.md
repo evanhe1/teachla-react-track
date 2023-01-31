@@ -13,14 +13,14 @@
       - [Import](#import)
   - [Additional Resources](#additional-resources)
 
-Welceome! Today we will learn about JavaScript!
+Welcome! Today we will learn about JavaScript!
 
 ## Introduction
 JavaScript is a programming language that serves as one of the key technologies behind the web, along with HTML and CSS. 
 
 The three technologies synergize similarly to nouns, adjectives, and verbs in speech. HTML is analogous to a noun (outlining what will appear on the page) and CSS is analogous to an adjective (describing the styling of the page), JavaScript is analogous to a verb, allowing a page to dynamically respond to a user's actions.
 
-As mentioned last week, Node.js is a runtime environment for JavaScript within which we can execute JavaScript code, while React is a Javascript framework that we can use to develop web application.
+As mentioned last week, Node.js is a runtime environment for JavaScript within which we can execute JavaScript code, while React is a JavaScript framework that we can use to develop web application.
 
 ## ES6
 ES6 (ECMAScript 6 or ECMAScript 2015) was the result of the most recent major revision to the JavaScript language, which occurred in 2015. Before learning React, we will quickly overview the major features of ES6.
@@ -160,7 +160,7 @@ const nums = [1,2,3,4,5]
 const numsEven = nums.filter(num => num % 2 === 0) // returns [2,4]
 ```
 
-`reduce` runs a reducer function on each element of the array in order, passing the current result at each step to the next element. The user can pass in a initial value for the result before the first element is processed, without the value at index 0 will be used as the initial value. The most intuitive use case for this function is for summing all the elements of an array:
+`reduce` runs a reducer function on each element of the array in order, passing the current result at each step to the next element. The user can pass in an initial value for the result before the first element is processed, without the value at index 0 will be used as the initial value. The most intuitive use case for this function is for summing all the elements of an array:
 
 ```JavaScript
 const nums = [1, 2, 3, 4, 5];
