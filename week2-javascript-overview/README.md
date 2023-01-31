@@ -61,7 +61,7 @@ function helloWorld () {
 timesTwoArrow = () => "Hello World"
 ```
 
-For functions with a single statemenet, the arrow function syntax allows us to omit both the brackets and the `return` keyword.
+For functions with a single statement, the arrow function syntax allows us to omit both the brackets and the `return` keyword.
 
 Parameters to arrow functions go inside the parentheses. For functions with a single parameter, the parentheses can be omitted as well.
 
@@ -77,7 +77,7 @@ timesTwoArrow = x => x * 2
 
 Another notable difference of arrow functions is the behavior of the `this` keyword, used to refer to a specific object that depends on how the function is called.
 
-In regular functions, the `this` keyword also function always binds to the context where the function was called, Converesely, in arrow functions, the `this` keyword is bound lexically, meaning that its `this` keyword depends on the scope in which the function is declared. Each behavior is desirable in different situations:
+In regular functions, the `this` keyword also function always binds to the context where the function was called, Conversely, in arrow functions, the `this` keyword is bound lexically, meaning that its `this` keyword depends on the scope in which the function is declared. Each behavior is desirable in different situations:
 
 ```JavaScript
 const student1 = {
@@ -104,9 +104,9 @@ For the above code block, the output will be
 undefined
 ```
 
-Ths `get_gpa` function is a regular function called by the `student1` object, so its `this` keyword binds to the `student1` object. However, as an arrow function in the `student2` object, the `get_gpa` function gets its `this` keyword from the closest surrounding scope with a `this` keyword defined, which is the global scope (returning either the `global` object in Node.js or the `window` object on the browser). The `global` or `window` objects are missing the `gpa` attribute, the function call returns `undefined`.
+The `get_gpa` function is a regular function called by the `student1` object, so its `this` keyword binds to the `student1` object. However, as an arrow function in the `student2` object, the `get_gpa` function gets its `this` keyword from the closest surrounding scope with a `this` keyword defined, which is the global scope (returning either the `global` object in Node.js or the `window` object on the browser). The `global` or `window` objects are missing the `gpa` attribute, the function call returns `undefined`.
 
-Now consider the following two objects, in which the a `setTimeout` call is nested inside the `get_gpa` function to delay returning the `gpa` field by 1 second:
+Now consider the following two objects, in which a `setTimeout` call is nested inside the `get_gpa` function to delay returning the `gpa` field by 1 second:
 
 ```JavaScript
 const student1 = {
@@ -246,7 +246,7 @@ const {name, gpa, ...rest} = student
 Here, `name` is assigned `Tom`, `age` is assigned `20`, and `rest` is assigned to an object consisting of the rest of attributes in `student`.
 
 ### Modules
-Modules makes your code easier to maintain by allowing you to break your code into separate files. In React, this will allow us to place each component in a separate file. Modules rely on two keywords: `export` and `import`. For this section, assume a directory with two files in it: `student.js` and `teacher.js`.
+Modules make your code easier to maintain by allowing you to break your code into separate files. In React, this will allow us to place each component in a separate file. Modules rely on two keywords: `export` and `import`. For this section, assume a directory with two files in it: `student.js` and `teacher.js`.
 
 #### Export
 Exports allow you to provide access to variables or functions from this module to another one. Exports are either named or default, and `export` statements can either be declared individually or all at once at the bottom of the file. Here is the code for named exports `student.js` in both cases:
