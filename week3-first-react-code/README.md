@@ -66,7 +66,7 @@ Now, we must configure the parent component to actually provide these arguments.
 // App.js
 import logo from './logo.svg'
 import './App.css'
-import React, {useState} from 'react'
+import React from 'react'
 import ImageDisplay from './ImageDisplay'
 
 function App() {
