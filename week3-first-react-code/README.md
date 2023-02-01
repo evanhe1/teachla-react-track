@@ -100,11 +100,11 @@ function App() {
   let size = 300
 
   function handleClickInc() {
-    size -= 10
+    size += 10
   }
 
   function handleClickDec() {
-    size += 10
+    size -= 10
   }
 
   return (
@@ -137,7 +137,7 @@ const [size, setSize] = useState(300)
 
 The `useState` function returns an array of exactly two elements: the state variable (`size`) and a function for updating this variable (`setSize`). Note the use of array destructuring to immediately declare these variables. The function itself takes a single argument: the initial value of the state variable. In our case, `size` will have an initial value of 300.
 
-Pay special attention to the `setSize` function. It is important that we use this function to update the `size` variable, with the new desired value as an argument. **Do not directly assign a new value to `size`** Remember that reassigning the value of a local variable does not trigger a re-render.
+Pay special attention to the `setSize` function. It is important that we use this function to update the `size` variable, with the new desired value as an argument. **Do not directly assign a new value to `size`.** Remember that reassigning the value of a local variable does not trigger a re-render.
 
 Now let's modify the bodies of the `handleClickInc` and `handleClickDec` functions to use the `setSize` function:
 
@@ -147,11 +147,11 @@ function handleClickInc() {
 }
 
 function handleClickDec() {
-    setSize(prevSize => prevSize + 10)
+    setSize(prevSize => prevSize - 10)
 }
 ```
 
-Note the use of an arrow function as an argument instead of simply passing `size + 10`. This is necessary since the new value of `size` depends on the previous value, as multiple increments in quick succesion could lead to a data race in which a later increment reads an old value of `size` before an earlier increment has written the new, correct value. Don't worry too much if you are unfamiliar with this concept; you will learn all about it in CS33. Just know that React allows us to avoid this problem using the arrow function syntax because it will guarantee us the latest value of `size`, which we access here as `prevSize`.
+Note the use of an arrow function as an argument instead of simply passing `size + 10`. This is necessary since the new value of `size` depends on the previous value, as multiple increments in quick succession could lead to a data race in which a later increment reads an old value of `size` before an earlier increment has written the new, correct value. Don't worry too much if you are unfamiliar with this concept; you will learn all about it in CS33. Just know that React allows us to avoid this problem using the arrow function syntax because it will guarantee us the latest value of `size`, which we access here as `prevSize`.
 
 Now our code will work as expected, as we can dynamically adjust the size of the logo using the buttons.
 
