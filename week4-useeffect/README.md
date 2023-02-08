@@ -4,9 +4,9 @@ Welcome! Today we will learn about another common React hook: `useEffect`!
 
 ## Side Effects
 
-**Side effects**, are operations that occur outside the React rendering process. Common examples of side effects include setting timers, accessing browser APIs, and interfacing with a backend.
+**Side effects** are operations that occur outside the React rendering process. Common examples of side effects include setting timers, accessing browser APIs, and interfacing with a backend.
 
-If we attempt to put side effect code during inside the main body of our component function, we tie side effect executing into the component rendering process. This will result in undefined behavior with more complex side effects, as we do not have direct control over when a component re-renders in React (see last week's content for more info on this). To control the execution of side effects, we must use the `useEffect` hook.
+If we attempt to put side effect code inside the main body of our component function, we tie side effect execution into the component rendering process. This will result in undefined behavior with more complex side effects, as we do not have direct control over when a component re-renders in React (see last week's content for more info on this). To control the execution of side effects, we must use the `useEffect` hook.
 
 ## useEffect
 
@@ -14,8 +14,8 @@ If we attempt to put side effect code during inside the main body of our compone
 
 ```JavaScript
 useEffect(() => {
-    document.title = `Welcome, ${name}!`;
-  });
+  document.title = `Welcome, ${name}!`;
+});
 ```
 
 Here, we are taking advantage of a browser API to set the title of the page to greet you based on your name. In its simplest form, the `useEffect` hook only needs a single argument: a callback function representing your side effect.
@@ -25,8 +25,8 @@ In its current form, the `useEffect` function will execute its callback every ti
 
 ```JavaScript
 useEffect(() => {
-    document.title = `Welcome, ${name}!`;
-  }, [name]);
+  document.title = `Welcome, ${name}!`;
+}, [name]);
 ```
 
 After the initial render and side effect evaluation, the dependency array will ensure that the callback is only executed again when one of its elements changes value. In this case, we only want to update the document title based on changes to the `name` variable, so we pass it to the dependency array.
@@ -35,8 +35,8 @@ A special case worth mentioning is the empty dependency array. Use this when you
 
 ```JavaScript
 useEffect(() => {
-    document.title = `Welcome to the Page!`;
-  }, []);
+  document.title = "Welcome to the Page!";
+}, []);
 ```
 
 As a final recap:
@@ -49,7 +49,7 @@ Updating the page title is a simple side effect that does not require additional
 
 ```JavaScript
 useEffect(
-    setTimeout(() => (console.log("Timer Done!")), 10000);
+  setTimeout(() => (console.log("Timer Done!")), 10000);
 ), [reset];
 ```
 
@@ -63,7 +63,7 @@ To address this issue, we must use a **cleanup function**. The cleanup function 
 useEffect(() => {
     timer = setTimeout(() => (console.log("Timer Done!")), 10000);
     return () => clearTimeout(timer);
-    }
+  }
 ), [reset];
 ```
 
@@ -89,50 +89,50 @@ Next, we will add a button for toggling this state:
 
 ```JavaScript
 return (
-    <div className="App">
-      <div>
-        <button onClick={handleClickInc}>+</button>
+  <div className="App">
+    <div>
+      <button onClick={handleClickInc}>+</button>
         <button onClick={handleClickDec}>-</button>
         <button onClick={handleClickAuto}>{auto ? "Pause" : "Play"}</button>
       </div>
       <ImageDisplay url={logo} alt={"React logo"} width={size}/>
-    </div>
-  )
+  </div>
+)
 ```
 
 Now we will add the `handleClickAuto` function for processing button clicks:
 
 ```JavaScript
 function handleClickAuto() {
-    setAuto(auto => !auto)
-  }
+  setAuto(auto => !auto)
+}
 ```
 
 We also want to disable the manual size adjustment buttons while autoscaling is in effect. This is easily accomplished by checking the value of `auto` in the buttons' respective handler functions:
 
 ```JavaScript
 function handleClickInc() {
-    if (!auto)
-      setSize(prevSize => prevSize + 10)
-  }
+  if (!auto)
+    setSize(prevSize => prevSize + 10)
+}
 
 function handleClickDec() {
-    if (!auto)
-      setSize(prevSize => prevSize - 10)
-  }
+  if (!auto)
+    setSize(prevSize => prevSize - 10)
+}
 ```
 
 Finally, we will add our `useEffect` hook, which increase the button in 100-pixel size increments every second until reaching 500 pixels, before resetting back to 100 pixels. To accomplish this, we will use the `setInterval` function, which has identical syntax to `setTimeout`. However, when the initial timer expires, `setInterval` will indefinitely repeat the timer (generating fixed intervals) instead of terminating.
 
 ```JavaScript
 useEffect(() => {
-    let interval = null;
-    if (auto)
-      interval = setInterval(
-        () => {setSize(prevSize => (prevSize % 500 + 100))}, 1000
-      )
-    return () => clearInterval(interval)
-  }, [auto])
+  let interval = null;
+  if (auto)
+    interval = setInterval(() => {
+      setSize(prevSize => (prevSize % 500 + 100))
+    }, 1000)
+  return () => clearInterval(interval)
+}, [auto])
 ```
 
 After pressing the `Play` button, your image should auto-scale as follows:
@@ -151,7 +151,7 @@ A copy of the completed code can be found in the `week4-app-final` folder.
 
 When the component leaves the page for good, the cleanup function will execute one last time to account for the last execution of the callback.
 
-That's it for this week! Be sure to check out the resources below. Next week we will learn about an application-wide alternative to `useState`: `useContext`!
+That's it for this week! Be sure to check out the resources below. Next week we will learn about an additional hook that can expand the power of `useState`: `useContext`!
 
 ## Additional Resources
 [useEffect Official Documentation](https://beta.reactjs.org/reference/react/useEffect)<br/>
