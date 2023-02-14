@@ -92,10 +92,10 @@ return (
   <div className="App">
     <div>
       <button onClick={handleClickInc}>+</button>
-        <button onClick={handleClickDec}>-</button>
-        <button onClick={handleClickAuto}>{auto ? "Pause" : "Play"}</button>
-      </div>
-      <ImageDisplay url={logo} alt={"React logo"} width={size}/>
+      <button onClick={handleClickDec}>-</button>
+      <button onClick={handleClickAuto}>{auto ? "Pause" : "Play"}</button>
+    </div>
+    <ImageDisplay url={logo} alt={"React logo"} width={size}/>
   </div>
 )
 ```
