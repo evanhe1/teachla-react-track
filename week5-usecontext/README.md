@@ -6,7 +6,7 @@ Welcome! Today we will learn about the Context API, a way to share state across 
 
 So far, the only way that we have to pass information between components in React is via props. As a reminder, props allow us to bundle a set of values in a parent component into a `props` object, and then access those values as object fields in the child component.
 
-Unfortunately, props only allow to pass information from a parent component to its direct children. This limitation presents an issue in the case of deeply nested component chains. Consider the scenario shown in the diagram below:
+Unfortunately, props only allow us to pass information from a parent component to its direct children. This limitation presents an issue in the case of deeply nested component chains. Consider the scenario shown in the diagram below:
 
 ![long prop chain](images/prop-chain.png)
 
@@ -75,11 +75,11 @@ Passing props this way is both tedious and error-prone; is there a better soluti
 
 ## Context API
 
-The Context API allows React share state globally. Note that a context does that manage the state variable itself; we will still rely on `useState` for that purpose. The Context API simply makes this state variable available to child components without requiring the component to receive the value as a prop.
+The Context API allows React to share state globally. Note that a context does not manage the state variable itself; we will still rely on `useState` for that purpose. The Context API simply makes this state variable available to child components without requiring the component to receive the value as a prop.
 
 ### createContext
 
-To create a context, we must declare the `createContext` function outside any component. Since context shares values across multiple containers, it should not be associated with a single container.
+To create a context, we must declare the `createContext` function outside any component. Since context shares values across multiple components, it should not be associated with a single component.
 
 ```JavaScript
 const widthContext = createContext(300)
@@ -89,7 +89,7 @@ const widthContext = createContext(300)
 
 The function returns an object with two values: a `Provider`, which a parent can use to make the context available to children, and a `Consumer`, which a child can use to access the context from the parent. What makes context different from props is that any descendent of the parent component can access the `Consumer`, not just the direct children.
 
-Although we will not do that here, we could also use object destructuring on the return object:
+Although we will not do that here, we could also use object destructuring on the returned object:
 
 ```JavaScript
 const { Provider, Consumer } = createContext(300)
@@ -114,7 +114,7 @@ return (
   )
 ```
 
-The `value` field in the `Provider` wrapper indicates the value made available to the child component, which is the `width` state variable here. Again, omitting this `value` field will result in a value of `undefined`. Note that nesting multiple `Provider` wrappers inside each other will cause the value of the inner wrapper to override the wrapper of the outer one.
+The `value` field in the `Provider` wrapper indicates the value made available to the child component, which is the `width` state variable here. Again, omitting this `value` field will result in a value of `undefined`. Note that nesting multiple `Provider` wrappers inside each other will cause the value of the inner wrapper to override the value of the outer one.
 
 
 ### Consumer
@@ -140,14 +140,14 @@ To determine the value of the `Consumer` wrapper, React will traverse up the com
 
 It is here that the advantage of `useContext` becomes apparent. We only need to add the `Consumer` wrapper to the components that use the state variable, and can leave the intermediary components (`Child1`, `Child2`, and `Child2`) unmodified. 
 
-This separation applies for re-rendering as well: **when the context value changes in the parent component, only child components with a** `Consumer` **wrapper will go through the re-render process**. This is exception to the typical behavior of a parent component re-rendering all of its child components when its state or props change.
+This separation applies for re-rendering as well: **when the context value changes in the parent component, only child components with a** `Consumer` **wrapper will go through the re-render process**. This is an exception to the typical behavior of a parent component re-rendering all of its child components when its state or props change.
 
 ### useContext
 
 There is an alternate syntax for consuming a context: using the `useContext` hook.
 
 ```JavaScript
-const width = useContext(imageContext)
+const width = useContext(widthContext)
 ```
 
 The hook takes a single argument representing the context to consume. Its behavior will be identical to the `Consumer` (i.e. it will traverse up the component hierarchy to find the closest `Provider`), but its syntax is shorter and more analogous to that of other React hooks. Using this implementation, the full `Child4` component will look as follows:
