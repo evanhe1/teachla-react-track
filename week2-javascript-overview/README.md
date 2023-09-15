@@ -137,7 +137,7 @@ undefined
 3.1
 ```
 
-In this case, for the `student1` object, the GPA printing function is called by the `setTimeout` function, so its `this` keyword points to a `timeout` object. This object is missing a `gpa` attribute, so the function call returns undefined. For the `student2` object, the closest surrounding scope for which the `get_gpa` function is defined is the scope of the `student2` object, making its `this` keyword refer to the `student2` object. 
+In this case, for the `student1` object, the GPA printing function is called by the `setTimeout` function, so its `this` keyword points to a `timeout` object. This object is missing a `gpa` attribute, so the function call returns undefined. For the `student2` object, the `this` keyword of the surrounding scope (the scope of the `get_gpa` function) refers to the `student2` object, thus making its `this` keyword also refer to the `student2` object. 
 
 From the two examples above, here is general advice about when to use arrow functions or regular functions. **Generally, use regular functions when defining top-level methods for an object or class, and use arrow functions when nested inside other functions.** In situations when the `this` keyword is not relevant, the two syntaxes can generally be used interchangably.
 
